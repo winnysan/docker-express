@@ -1,15 +1,15 @@
 version: '3.8'
 
 services:
-  express-app:
+  app:
     build: .
     restart: unless-stopped
     ports:
       - "3000:4000"
     depends_on:
       - mongo
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/database
+    env_file:
+      - .env.production
 
   mongo:
     image: mongo:latest

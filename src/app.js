@@ -1,14 +1,19 @@
 import express from "express";
 import mongoose from "mongoose";
+import dotenv from 'dotenv';
+
+if (process.env.APP_ENV !== 'production') dotenv.config({ path: '.env.local' });
 
 const app = express();
-const port = 4000;
 
-const uri = process.env.MONGO_URI || "mongodb://localhost:27017/database";
+const APP_NAME = process.env.APP_NAME;
+const PORT = 4000;
+const MONGO_URI = process.env.MONGO_URI;
+
 
 (async () => {
   try {
-    const conn = await mongoose.connect(uri);
+    const conn = await mongoose.connect(MONGO_URI);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (err) {
     console.log(`MongoDB Error: ${err}`);
@@ -17,9 +22,9 @@ const uri = process.env.MONGO_URI || "mongodb://localhost:27017/database";
 })();
 
 app.get("/", (req, res) => {
-  res.send("Express app with MongoDB from Docker");
+  res.send(`${APP_NAME} with MongoDB from Docker`);
 });
 
-app.listen(port, () => {
-  console.log(`App running on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`${APP_NAME} running on http://localhost:${PORT}`);
 });

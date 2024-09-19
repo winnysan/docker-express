@@ -52,6 +52,16 @@ server {
 }
 ```
 
+## Nastavenie `.env*`
+
+```
+# Pre lokálne prostredie
+.env.local
+
+# Pre produkčné prostredie
+.env.production
+```
+
 ## Príkazy
 
 ```bash
