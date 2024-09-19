@@ -1,7 +1,19 @@
-version: "3.8"
+version: '3.8'
+
 services:
-  app:
+  express-app:
     build: .
     restart: unless-stopped
     ports:
       - "3000:4000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/database
+
+  mongo:
+    image: mongo:latest
+    volumes:
+      - /var/www/docker/mongo:/data/db
+    ports:
+      - "27017:27017"
