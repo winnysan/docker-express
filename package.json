@@ -1,0 +1,11 @@
+{
+  "name": "express",
+  "type": "module",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
